@@ -78,8 +78,8 @@ app.get('/api/trades/:address', async (req, res) => {
     else if (range === 'week') filter.time = { $gte: new Date(now.getTime() - 7 * 24 * 60 * 60 * 1000) };
     else if (range === 'month') filter.time = { $gte: new Date(now.getFullYear(), now.getMonth(), 1) };
     const trades = await Trade.find(filter).sort({ time: -1 }).limit(200);
-    res.json({ ok: true, trades });
-  } catch (e) { res.status(500).json({ error: e.message }); }
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => console.log(`🚀 Server on ${PORT}`));
 });
 
 app.get('/', (req, res) => res.json({ status: 'CryptoHub API running' }));
